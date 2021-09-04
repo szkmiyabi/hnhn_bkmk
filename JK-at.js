@@ -1,8 +1,8 @@
 javascript:(function(){
 	var tm_eff = function(mmss) {
 		var my_rand = function() {
-			var map = [-3, -2, -1, 1, 2, 3];
-			return map[Math.floor(Math.random() * 6)];
+			var map = [-5, -4, -3, -2, -1, 1, 2, 3, 4, 5];
+			return map[Math.floor(Math.random() * 10)];
 		};
 		var tmp = mmss.split(":");
 		var mm = Number(tmp[0]);
