@@ -18,9 +18,9 @@ javascript:(function(){
 				if(op=="pipe"){
 					cdoc += itd.textContent.trim();
 					cdoc += "｜";
-				}else{
+				}else if(op=="tokki"){
 					var ctxt = itd.textContent.trim();
-					ctxt = ctxt.replace(/(\r\n|\n)/mg, "");
+					ctxt = ctxt.replace(/(\r\n|\n|事業者|ご家族|その他)/mg, "");
 					cdoc += ctxt;
 				}
 			}
@@ -34,7 +34,7 @@ javascript:(function(){
 			if(j==10 && i>0) {
 				doc += childCellsEncode(td, "pipe") + "\t";
 			}else if(j==11 && i>0){
-				doc += childCellsEncode(td, "") + "\t";
+				doc += childCellsEncode(td, "tokki") + "\t";
 			}else{
 				doc += replacer(td.textContent) + "\t";
 			}
