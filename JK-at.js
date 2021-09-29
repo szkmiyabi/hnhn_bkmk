@@ -1,4 +1,5 @@
 javascript:(function(){
+	var sf=true,ef=true;
 	var tm_eff = function(mmss) {
 		var my_rand = function() {
 			var map = [-5, -4, -3, -2, -1, 1, 2, 3, 4, 5];
@@ -24,8 +25,8 @@ javascript:(function(){
 	};
 	var st_tm = document.querySelector("#yotei_start_e").value;
 	var en_tm = document.querySelector("#yotei_end_e").value;
-	document.getElementsByName("jisseki_start_syuusei")[0].value=tm_eff(st_tm);
-	document.getElementsByName("jisseki_end_syuusei")[0].value=tm_eff(en_tm);
+	document.getElementsByName("jisseki_start_syuusei")[0].value = (sf==true) ? tm_eff(st_tm) : st_tm;
+	document.getElementsByName("jisseki_end_syuusei")[0].value = (ef==true) ? tm_eff(en_tm) : en_tm;
 	var planChecks = document.querySelectorAll("#naiyou input[type=checkbox]");
 	var vars = new Array();
 	for(var i=0; i<planChecks.length; i++) {
