@@ -29,7 +29,7 @@ javascript:(function(){
 	};
 	for(var i=0; i<trs.length; i++){
 		var tr = trs[i];
-		for(j=0; j<=11; j++){
+		for(j=0; j<=31; j++){
 			var td = tr.cells[j];
 			if(j==10 && i>0) {
 				doc += childCellsEncode(td, "pipe") + "\t";
