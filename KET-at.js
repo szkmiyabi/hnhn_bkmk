@@ -6,8 +6,11 @@ javascript:(function(){
 	};
 	var bmax = 110;
 	var bmin = 72;
+	var haku = 80;
 	var kmax = my_rand_free([-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6,7,8,9,10,12,13,16,17]);
 	var kmin = my_rand_free([-7,-6,-5,-4,-3,-2,-1,1,2,3,4,5,6]);
+	var khaku = my_rand_free([-3,-2,-1,1,2,3]);
 	document.querySelector("#ketu_max").value = (bmax + kmax);
 	document.querySelector("#ketu_min").value = (bmin + kmin);
+	document.querySelector("input[name='myaku']").value = (haku + khaku);
 })();
