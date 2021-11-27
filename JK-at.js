@@ -23,6 +23,12 @@ javascript:(function(){
 		var ssStr = ('0' + ss).slice(-2);
 		return mmStr + ":" + ssStr;
 	};
+	var fromYesterday = function(st_hhmm, en_hhmm) {
+		var st_hh = Number(st_hhmm.split(":")[0]);
+		var en_hh = Number(en_hhmm.split(":")[0]);
+		if(st_hh > en_hh) return true;
+		else return false;
+	};
 	var st_tm = document.querySelector("#yotei_start_e").value;
 	var en_tm = document.querySelector("#yotei_end_e").value;
 	document.getElementsByName("jisseki_start_syuusei")[0].value = (sf==true) ? tm_eff(st_tm) : st_tm;
@@ -39,4 +45,11 @@ javascript:(function(){
 	for(var i=0; i<vars.length; i++){
 		document.querySelector("#naiyou" + vars[i]).checked = true;
 	}
+	document.querySelector("#date_start").selectedIndex = 1;
+	var st_hhmm = document.getElementsByName("jisseki_start_syuusei")[0].value;
+	var en_hhmm = document.getElementsByName("jisseki_end_syuusei")[0].value;
+	if(fromYesterday(st_hhmm, en_hhmm)) {
+		document.querySelector("#date_start").selectedIndex = 0;
+	}
+
 })();
