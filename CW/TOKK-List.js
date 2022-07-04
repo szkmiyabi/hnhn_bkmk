@@ -2,9 +2,19 @@ javascript:(function(){
 	var tbl = document.querySelector("#jisshi-kiroku-table");
 	var trs = tbl.rows;	
 	var doc = "";
+	var datas = new Array();
 	var replacer = function(str){
 		var nstr = str.trim();
 		nstr = nstr.replace(/(\r\n|\n)/mg, "｜");
+		return nstr;
+	};
+	var spanEraser = function(str){
+		var nstr = str.trim();
+		nstr = nstr.replace(/&nbsp;/mg, "");
+		nstr = nstr.replace(/(<span style)(.*?)(>)/mg, "");
+		nstr = nstr.replace(/(<)(\/*span)(.*?)(>)/mg, "");
+		nstr = nstr.replace(/<br>/mg, "｜");
+		nstr = nstr.replace(/(\r\n|\n)/mg, "");
 		return nstr;
 	};
 	var childCellsEncode = function(ttd, op){
@@ -28,15 +38,32 @@ javascript:(function(){
 		return cdoc;
 	};
 	for(var i=0; i<trs.length; i++){
+		datas[i]=new Array();
 		var tr = trs[i];
 		for(j=0; j<=31; j++){
 			var td = tr.cells[j];
 			if(j==10 && i>0) {
-				doc += childCellsEncode(td, "pipe") + "\t";
+				datas[i].push(childCellsEncode(td, "pipe"));
 			}else if(j==11 && i>0){
-				doc += childCellsEncode(td, "tokki") + "\t";
+				datas[i].push(childCellsEncode(td, "tokki"));
+			}else if(j==12 && i>0){
+					var ctxt = td.innerHTML.trim();
+					ctxt = spanEraser(ctxt);
+					datas[i].push(ctxt);
 			}else{
-				doc += replacer(td.textContent) + "\t";
+				datas[i].push(replacer(td.textContent));
+			}
+		}
+	}
+	for(var i=0; i<datas.length; i++){
+		for(j=0; j<datas[i].length; j++){
+			var line=datas[i];
+			if(j==11) {
+				doc += line[12] + "\t";;
+			}else if(j==12){
+				doc += line[11] + "\t";;
+			}else{
+				doc += line[j] + "\t";;
 			}
 		}
 		doc += "\r\n";
